@@ -13,6 +13,8 @@
 # below. You must also write the driver code to test your classes.
 
 class SimpleCalculator
+  attr_reader :first_number, :second_number
+
 
   def add(first_number, second_number)
     first_number + second_number
@@ -32,22 +34,9 @@ class SimpleCalculator
 
 end
 
-class FancyCalculator
-
-  def add(first_number, second_number)
-    first_number + second_number
-  end
-
-  def subtract(first_number, second_number)
-    first_number - second_number
-  end
-
-  def multiply(first_number, second_number)
-    first_number * second_number
-  end
-
-  def divide(first_number, second_number)
-    first_number / second_number
+class FancyCalculator < SimpleCalculator
+  def initialize
+    super
   end
 
   def square_root(number)
@@ -56,5 +45,14 @@ class FancyCalculator
 
 end
 
-# Write your own driver code below:
+# Write your own driver code below:                              
+calculator = SimpleCalculator.new
+fancy_calc = FancyCalculator.new
+
+p fancy_calc.square_root(4)
+p fancy_calc.subtract(8,3)
+p fancy_calc.divide(20,5)
+p fancy_calc.multiply(2,5)
+p calculator.add(4,3)
+
 

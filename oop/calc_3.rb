@@ -3,9 +3,7 @@
 # of a triangle if given the length of the other two sides. Figure out how to 
 # DRY up all the code below - there shouldn't be a single method duplicated between
 # any two classes.
-
-class SimpleCalculator
-
+module Basic_calc
   def add(first_number, second_number)
     first_number + second_number
   end
@@ -21,54 +19,26 @@ class SimpleCalculator
   def divide(first_number, second_number)
     first_number / second_number
   end
+end
 
+module Sqr_root
+  def square_root(number)
+    Math.sqrt(number)
+  end
+end
+
+class SimpleCalculator
+  include Basic_calc
 end
 
 class FancyCalculator
-
-  def add(first_number, second_number)
-    first_number + second_number
-  end
-
-  def subtract(first_number, second_number)
-    first_number - second_number
-  end
-
-  def multiply(first_number, second_number)
-    first_number * second_number
-  end
-
-  def divide(first_number, second_number)
-    first_number / second_number
-  end
-
-  def square_root(number)
-    Math.sqrt(number)
-  end
-
+  include Basic_calc
+  include Sqr_root
 end
 
 class WhizBangCalculator
-
-  def add(first_number, second_number)
-    first_number + second_number
-  end
-
-  def subtract(first_number, second_number)
-    first_number - second_number
-  end
-
-  def multiply(first_number, second_number)
-    first_number * second_number
-  end
-
-  def divide(first_number, second_number)
-    first_number / second_number
-  end
-
-  def square_root(number)
-    Math.sqrt(number)
-  end
+  include Basic_calc
+  include Sqr_root
 
   def hypotenuse(first_number, second_number)
     Math.hypot(first_number, second_number)
@@ -84,3 +54,13 @@ end
 
 # Copy your driver code from the previous exercise and more below:
 
+calculator = SimpleCalculator.new
+fancy_calc = FancyCalculator.new
+whiz_calc = WhizBangCalculator.new
+
+p fancy_calc.square_root(4)
+p fancy_calc.subtract(8,3)
+p fancy_calc.divide(20,5)
+p fancy_calc.multiply(2,5)
+p calculator.add(4,3)
+p whiz_calc.hypotenuse(4,8)
